@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!-- A compléter -->
+<?xml-stylesheet type = "text/xsl" href = "pokedex.xsl"?> <!-- à compléter (DONE) -->
 <pokedex>
   <pokemon>
     <id>1</id>
