@@ -132,7 +132,7 @@
 
 			<xsl:for-each select="$filtre">
 
-				<!--</>  ##### A compléter 7 : Vous devez trier les pokemons par la valeur numérique de leur ID -->
+				<!--</>  ##### A compléter 7 : (TODO LATER) Vous devez trier les pokemons par la valeur numérique de leur ID -->
 				<xsl:apply-templates select="." />
 
 			</xsl:for-each>
@@ -157,7 +157,7 @@
 				<!-- generation = "6" si l'id du pokemon est plus petit ou égal à 721 et plus grand que 649.-->
 				<!-- generation = "7" si l'id du pokemon est plus petit ou égal à 809 et plus grand que 721-->
 
-				<!-- <xsl:value-of select="1"> --> <!-- Pour l'instant tous les pokémosn sont de la génération 1, pour que vous ne soyez pas bloqué sur le reste -->
+				<!--<xsl:value-of select="1">--> <!-- Pour l'instant tous les pokémosn sont de la génération 1, pour que vous ne soyez pas bloqué sur le reste -->
 
 				<!-- Fin A compléter 10 -->
 
@@ -195,9 +195,9 @@
 
 	<xsl:template match="id">
 
-		<img width="100%">
+		<img width="100%" src="images/001.png"> <!-- test, change it-->
 
-			<!--</>  ##### A compléter 8 : Ici, vous devez étudier le dossier images et vous trouverez facilement l'objectif de ce que vous devez faire ici. Indice : Vous devez utiliser une ou plusieurs 	               fonctions de  XSLT-->
+			<!--</>  ##### A compléter 8 (TODO) : Ici, vous devez étudier le dossier images et vous trouverez facilement l'objectif de ce que vous devez faire ici. Indice : Vous devez utiliser une ou plusieurs 	               fonctions de  XSLT-->
 
 				<!-- NB : La sources d'images utilisées provient de :  https://github.com/fanzeyi/pokemon.json    -->
 		</img>
