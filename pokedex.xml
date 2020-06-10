@@ -1,3 +1,9 @@
+<!--
+Authors: Dessaules Loïc & Potet Bastien (Labo_04_Groupe_B_J)
+Date: 10.06.2020
+File: pokedex.xml
+-->
+
 <?xml version="1.0" encoding="UTF-8" ?>
 <?xml-stylesheet type = "text/xsl" href = "pokedex.xsl"?> <!-- à compléter (DONE) -->
 <pokedex>

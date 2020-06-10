@@ -1,3 +1,9 @@
+<!--
+Authors: Dessaules Loïc & Potet Bastien (Labo_04_Groupe_B_J)
+Date: 10.06.2020
+File: pokedex.xsl
+-->
+
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
@@ -52,11 +58,12 @@
 
 					<div id="accordion">
 
-						<xsl:variable name="types" select="//pokedex/pokemon/type[not(preceding::*=.)]" /> <!-- ##### A compléter 3 (DONE) : Ici, vous devez trouver l'expression XPath à mettre dans l'attribut select 
-					                                                       Le but est de récupérer les types de pokemon en parcourant tous les enfants <type> de tous les pokemons,
-					                                                       mais sans avoir de doublons à la fin, vous ne pouvez pas mettre explicitement ici les types que vous trouver dans le fichier XML
+						<xsl:variable name="types" select="//pokedex/pokemon/type[not(preceding::*=.)]" /> 
+						<!-- ##### A compléter 3 (DONE) : Ici, vous devez trouver l'expression XPath à mettre dans l'attribut select 
+							Le but est de récupérer les types de pokemon en parcourant tous les enfants <type> de tous les pokemons,
+							mais sans avoir de doublons à la fin, vous ne pouvez pas mettre explicitement ici les types que vous trouver dans le fichier XML
 
-					                                                       Conseil : Cherchez une astuce sur internet ! -->
+							Conseil : Cherchez une astuce sur internet ! -->
 
 						<xsl:for-each select="$types">
 
@@ -132,9 +139,11 @@
 
 			<xsl:for-each select="$filtre">
 
-				<!--</>  ##### A compléter 7 : (TODO LATER) Vous devez trier les pokemons par la valeur numérique de leur ID -->
-				<xsl:apply-templates select="." />
-
+				<!--</>  ##### A compléter 7 : (DONE) Vous devez trier les pokemons par la valeur numérique de leur ID -->
+		
+				<xsl:apply-templates select=".">
+					<xsl:sort select="//pokedex/pokemon/id" order="ascending" data-type="number"/>
+				</xsl:apply-templates>
 			</xsl:for-each>
 
 		</div>
@@ -147,17 +156,16 @@
 
 			<xsl:attribute name="generation">
 
-				<!-- ##### A compléter 10 (le plus proprement possible) étant donné les contraintes suivantes : -->
-
-				<!-- generation = "1" si l'id du pokemon est plus petit ou égal à 151 -->
-				<!-- generation = "2" si l'id du pokemon est plus petit ou égal à 251 et plus grand que 151 -->
-				<!-- generation = "3" si l'id du pokemon est plus petit ou égal à 386 et plus grand que 251 -->
-				<!-- generation = "4" si l'id du pokemon est plus petit ou égal à 493 et plus grand que 386 -->
-				<!-- generation = "5" si l'id du pokemon est plus petit ou égal à 649 et plus grand que 493 -->
-				<!-- generation = "6" si l'id du pokemon est plus petit ou égal à 721 et plus grand que 649.-->
-				<!-- generation = "7" si l'id du pokemon est plus petit ou égal à 809 et plus grand que 721-->
-
-				<!--<xsl:value-of select="1">--> <!-- Pour l'instant tous les pokémosn sont de la génération 1, pour que vous ne soyez pas bloqué sur le reste -->
+				<!-- ##### A compléter 10 (DONE) (le plus proprement possible) étant donné les contraintes suivantes : -->
+				<xsl:choose>
+					<xsl:when test="id &lt; 152">1</xsl:when>
+					<xsl:when test="id &lt; 252">2</xsl:when>
+					<xsl:when test="id &lt; 387">3</xsl:when>
+					<xsl:when test="id &lt; 494">4</xsl:when>
+					<xsl:when test="id &lt; 650">5</xsl:when>
+					<xsl:when test="id &lt; 722">6</xsl:when>
+					<xsl:when test="id &lt; 810">7</xsl:when>
+				</xsl:choose>
 
 				<!-- Fin A compléter 10 -->
 
@@ -198,16 +206,7 @@
 		<!-- NB : La sources d'images utilisées provient de :  https://github.com/fanzeyi/pokemon.json    -->
 		<xsl:element name="img">
 			<xsl:attribute name="src">
-				images/
-				<xsl:choose>
-					<xsl:when test=". &lt; 10">
-					00
-					</xsl:when>
-					<xsl:when test=". &lt; 100">
-					0
-					</xsl:when>
-				</xsl:choose>
-				<xsl:value-of select="."/>.png
+				images/<xsl:value-of select='format-number(., "000")'/>.png
 			</xsl:attribute>
 			<xsl:attribute name="width">100%</xsl:attribute>
 		</xsl:element>
