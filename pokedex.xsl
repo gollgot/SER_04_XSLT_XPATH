@@ -194,17 +194,27 @@
 	</xsl:template>
 
 	<xsl:template match="id">
-
-		<img width="100%" src="images/001.png"> <!-- test, change it-->
-
-			<!--</>  ##### A compléter 8 (TODO) : Ici, vous devez étudier le dossier images et vous trouverez facilement l'objectif de ce que vous devez faire ici. Indice : Vous devez utiliser une ou plusieurs 	               fonctions de  XSLT-->
-
-				<!-- NB : La sources d'images utilisées provient de :  https://github.com/fanzeyi/pokemon.json    -->
-		</img>
+		<!--  ##### A compléter 8 (DONE) : Ici, vous devez étudier le dossier images et vous trouverez facilement l'objectif de ce que vous devez faire ici. Indice : Vous devez utiliser une ou plusieurs 	               fonctions de  XSLT-->
+		<!-- NB : La sources d'images utilisées provient de :  https://github.com/fanzeyi/pokemon.json    -->
+		<xsl:element name="img">
+			<xsl:attribute name="src">
+				images/
+				<xsl:choose>
+					<xsl:when test=". &lt; 10">
+					00
+					</xsl:when>
+					<xsl:when test=". &lt; 100">
+					0
+					</xsl:when>
+				</xsl:choose>
+				<xsl:value-of select="."/>.png
+			</xsl:attribute>
+			<xsl:attribute name="width">100%</xsl:attribute>
+		</xsl:element>
 
 	</xsl:template>
-	<!-->
-	<>  ##### A compléter 9 
+	
+	<xsl:template match="base"><!--  ##### A compléter 9 (DONE)--> 
 
 		<table class="table table-stripped">
 			
@@ -231,6 +241,6 @@
 
 		</table>
 
-	<> Fin à compléter 9 -->
+	</xsl:template><!-- Fin à compléter 9 -->
 
 </xsl:stylesheet>
